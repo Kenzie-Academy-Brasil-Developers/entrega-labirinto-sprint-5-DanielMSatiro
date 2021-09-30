@@ -1,0 +1,46 @@
+:root {
+    --width-height-margin: 20px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+
+.parede {
+    min-width: var(--width-height-margin);
+    height: var(--width-height-margin);
+    background-color: blue;
+}
+
+.caminho {
+    min-width: var(--width-height-margin);
+    height: var(--width-height-margin);
+}
+
+.paredeLinha {
+    display: flex;
+    justify-content: center;
+    margin: 0 var(--width-height-margin);
+}
+
+.labirinto {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: calc(var(--width-height-margin)*23);
+}
+
+.jogador {
+    width: var(--width-height-margin);
+    height: var(--width-height-margin);
+    background-color: crimson;
+    position: absolute;
+    top: calc(var(--width-height-margin)*9);
+    left: calc(var(--width-height-margin)*0);
+}
