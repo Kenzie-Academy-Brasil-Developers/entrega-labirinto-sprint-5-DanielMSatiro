@@ -35,11 +35,9 @@ const jogador = document.createElement('div')
 jogador.classList = 'jogador'
 labirinto.appendChild(jogador)
 
-const positionCaminho = [[9,-1],[8,21]] //posições de largada e chegada no array
+const positionCaminho = [[9,-1],[8,21]]
 
-/* template para desenvolver o labirinto e armazenar informações
-das celulas que possuem passsagem livre */
-
+/* IMPLANTA LABIRINTO */
 map.forEach((linha,i) => {
     const paredeLinha = document.createElement('div')
     paredeLinha.classList = 'paredeLinha'
@@ -58,23 +56,24 @@ map.forEach((linha,i) => {
     })
 })
 
-
+/* START */
 const start = document.getElementById('start')
 const popStart = document.querySelector('.pop-start')
 start.addEventListener('click', () => {
     popStart.style.display = 'none';
-    document.addEventListener('keydown',(event)=>keyMove(event))
+    document.addEventListener('keydown',keyMove)
     demo.innerText = "Restam "+ limit + " segundos"
     document.body.appendChild(demo)
     timer = setInterval(updateTimer,1000)
 })
 
+/* RESET */
 const close = document.getElementById('close')
 close.addEventListener('click', () => {
     popWin.style.display = 'none'
     won.style.display = 'none'
     lost.style.display = 'none'
-    limit = 30
+    limit = 20
     document.body.removeChild(demo)
     popStart.style.display = 'flex';
     line = 9
@@ -85,21 +84,22 @@ close.addEventListener('click', () => {
     jogador.style.left = `${boxLeft}px`
 })
 
-/* AQUI EU INCLUO UM CRONOMETRO QUE MOSTRA O RESULTADO
-CASO O JOGADOR NÃO CONSIGA TERMINAR */
+/* TIMER */
 let timer = ''
-let limit = 30
+let limit = 20
 const lost = document.getElementById('lost')
 const demo = document.createElement('span')
 const updateTimer = () => {
     demo.innerText = "Restam "+ --limit + " segundos"
     if(limit === 0) {
         clearInterval(timer)
+        document.removeEventListener('keydown',keyMove)
         popWin.style.display = 'flex'
         lost.style.display = 'flex'
     }
 }
 
+/* MENSAGEM DE VITORIA */
 const popWin = document.querySelector('.pop-win')
 const won = document.getElementById('won')
 const messageWinner = (line,col) => {
@@ -107,9 +107,11 @@ const messageWinner = (line,col) => {
         popWin.style.display = 'flex'
         won.style.display = 'flex'
         clearInterval(timer)
+        document.removeEventListener('keydown',keyMove)
     }
 }
 
+/* FUNCAO PARA MOVIMENTACAO */
 const keyMove = event => {
     const keyName = event.key;
     if(keyName==='ArrowDown'){
@@ -145,10 +147,3 @@ const keyMove = event => {
         }
     }    
 };
-
-
-
-
-
-
-
