@@ -63,6 +63,7 @@ start.addEventListener('click', () => {
     popStart.style.display = 'none';
     document.addEventListener('keydown',keyMove)
     demo.innerText = "Restam "+ limit + " segundos"
+    demo.classList = 'timer'
     document.body.appendChild(demo)
     timer = setInterval(updateTimer,1000)
 })
