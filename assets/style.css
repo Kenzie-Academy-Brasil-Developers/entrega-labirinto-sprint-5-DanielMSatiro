@@ -1,5 +1,5 @@
 :root {
-    --width-height-margin: 20px;
+    --width-height-margin: 15px;
 }
 
 body {
@@ -11,6 +11,11 @@ body {
     overflow-y: hidden;
 }
 
+.titulo {
+    margin: 40px;
+    font-size: 20px;
+    font-family: 'Grandstander', cursive;
+}
 
 .parede {
     min-width: var(--width-height-margin);
@@ -39,8 +44,18 @@ body {
 .jogador {
     width: var(--width-height-margin);
     height: var(--width-height-margin);
-    background-color: crimson;
     position: absolute;
     top: calc(var(--width-height-margin)*9);
     left: calc(var(--width-height-margin)*0);
+    background-image: url(img/twotone_shopping_cart_black_24dp.png);
+    background-size: cover;
+}
+
+@media (min-width: 501px){
+    :root {
+        --width-height-margin: 20px;
+    }
+    .titulo {
+        font-size: 30px;
+    }
 }

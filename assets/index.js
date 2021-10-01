@@ -11,10 +11,15 @@ const map = [
     "S     W W W W W W WWW",
     "WWWWW W W W W W W W W",
     "W     W W W   W W W W",
-    "W WWWWWWW WWWWW W W W",
+    "W WWWWWWW WW WW W W W",
     "W       W       W   W",
     "WWWWWWWWWWWWWWWWWWWWW",
 ];
+
+const titulo = document.createElement('span')
+titulo.classList = 'titulo'
+titulo.innerText = 'Lost in the Supermarket'
+document.body.appendChild(titulo)
 
 const labirinto = document.createElement('div')
 labirinto.classList = 'labirinto'
@@ -24,9 +29,10 @@ const jogador = document.createElement('div')
 jogador.classList = 'jogador'
 labirinto.appendChild(jogador)
 
-const positionCaminho = []
+const positionCaminho = [[9,-1],[8,21]] //posições de largada e chegada no array
 
-//template para desenvolver o labirinto
+/* template para desenvolver o labirinto e armazenar informações
+das celulas que possuem passsagem livre */
 
 map.forEach((linha,i) => {
     const paredeLinha = document.createElement('div')
@@ -48,7 +54,7 @@ map.forEach((linha,i) => {
 
 let line = 9
 let col = -1
-const sizeCelula = 20
+const sizeCelula = 15
 let boxTop = line*sizeCelula
 let boxLeft = (col+1)*sizeCelula
 
@@ -83,3 +89,14 @@ document.addEventListener('keydown', (event) => {
         }
     }    
   });
+
+  //ADAPTAR LABIRINTO PARA TELAS MAIORES
+  window.addEventListener('resize',() => sizeWindow())
+
+  const sizeWindow = () => {
+      const windowWidth = window.innerWidth
+      if(windowWidth>500){
+          sizeCelula = 20
+      }
+  }
+
