@@ -155,7 +155,7 @@ body {
     display: none;
 }
 .timer{
-    display: flex;
+    display: none;
     justify-content: center;
     width: 85%;
     font-size: 20px;

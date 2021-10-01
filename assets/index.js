@@ -63,8 +63,7 @@ start.addEventListener('click', () => {
     popStart.style.display = 'none';
     document.addEventListener('keydown',keyMove)
     demo.innerText = "Restam "+ limit + " segundos"
-    demo.classList = 'timer'
-    document.body.appendChild(demo)
+    demo.style.display = 'flex'
     timer = setInterval(updateTimer,1000)
 })
 
@@ -74,8 +73,8 @@ close.addEventListener('click', () => {
     popWin.style.display = 'none'
     won.style.display = 'none'
     lost.style.display = 'none'
+    demo.style.display = 'none'
     limit = 20
-    document.body.removeChild(demo)
     popStart.style.display = 'flex';
     line = 9
     col = -1
@@ -90,6 +89,9 @@ let timer = ''
 let limit = 20
 const lost = document.getElementById('lost')
 const demo = document.createElement('span')
+demo.classList = 'timer'
+demo.innerText = "Restam "+ limit + " segundos"
+document.body.appendChild(demo)
 const updateTimer = () => {
     demo.innerText = "Restam "+ --limit + " segundos"
     if(limit === 0) {
