@@ -60,11 +60,18 @@ map.forEach((linha,i) => {
 
 
 const start = document.getElementById('start')
+const popStart = document.querySelector('.pop-start')
 start.addEventListener('click', () => {
+    popStart.style.display = 'none';
+    //ativar o contador!!!
     document.addEventListener('keydown',(event)=>keyMove(event))
 })
 
-
+const messageWinner = (line,col) => {
+    if(line===8&&col===21){
+        
+    }
+}
 
 
 const keyMove = event => {
