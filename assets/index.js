@@ -67,9 +67,12 @@ start.addEventListener('click', () => {
     document.addEventListener('keydown',(event)=>keyMove(event))
 })
 
+const popWin = document.querySelector('.pop-win')
+const won = document.getElementById('won')
 const messageWinner = (line,col) => {
     if(line===8&&col===21){
-        
+        popWin.style.display = 'flex'
+        won.style.display = 'flex'
     }
 }
 
@@ -81,6 +84,7 @@ const keyMove = event => {
             boxTop+= sizeCelula
             line++ 
             jogador.style.top = `${boxTop}px`
+            messageWinner(line,col)
         }
     }
     if(keyName==='ArrowUp'){
@@ -88,6 +92,7 @@ const keyMove = event => {
             boxTop-= sizeCelula
             line--
             jogador.style.top = `${boxTop}px`
+            messageWinner(line,col)
         }
     }
     if(keyName==='ArrowRight'){
@@ -95,6 +100,7 @@ const keyMove = event => {
             boxLeft+= sizeCelula
             col++
             jogador.style.left = `${boxLeft}px`
+            messageWinner(line,col)
         }
     }
     if(keyName==='ArrowLeft'){
@@ -102,6 +108,7 @@ const keyMove = event => {
             boxLeft-= sizeCelula
             col--
             jogador.style.left = `${boxLeft}px`
+            messageWinner(line,col)
         }
     }    
 };

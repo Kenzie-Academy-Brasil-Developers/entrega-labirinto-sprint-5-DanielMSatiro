@@ -143,13 +143,14 @@ body {
     transition: 0.5s;
 }
 .message{
+    display: flex;
+    justify-content: center;
     width: 85%;
     font-size: 20px;
     font-family: 'Grandstander', cursive;
     color: white;
     line-height: 1.3;
     text-shadow: 2px 2px 2px black;
-    text-align: center;
 }
 #won,#lost{
     display: none;
