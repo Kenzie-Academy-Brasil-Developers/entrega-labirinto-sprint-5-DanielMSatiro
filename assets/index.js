@@ -63,9 +63,42 @@ const start = document.getElementById('start')
 const popStart = document.querySelector('.pop-start')
 start.addEventListener('click', () => {
     popStart.style.display = 'none';
-    //ativar o contador!!!
     document.addEventListener('keydown',(event)=>keyMove(event))
+    demo.innerText = "Restam "+ limit + " segundos"
+    document.body.appendChild(demo)
+    timer = setInterval(updateTimer,1000)
 })
+
+const close = document.getElementById('close')
+close.addEventListener('click', () => {
+    popWin.style.display = 'none'
+    won.style.display = 'none'
+    lost.style.display = 'none'
+    limit = 30
+    document.body.removeChild(demo)
+    popStart.style.display = 'flex';
+    line = 9
+    col = -1
+    boxTop = line*sizeCelula
+    boxLeft = (col+1)*sizeCelula
+    jogador.style.top = `${boxTop}px`
+    jogador.style.left = `${boxLeft}px`
+})
+
+/* AQUI EU INCLUO UM CRONOMETRO QUE MOSTRA O RESULTADO
+CASO O JOGADOR NÃO CONSIGA TERMINAR */
+let timer = ''
+let limit = 30
+const lost = document.getElementById('lost')
+const demo = document.createElement('span')
+const updateTimer = () => {
+    demo.innerText = "Restam "+ --limit + " segundos"
+    if(limit === 0) {
+        clearInterval(timer)
+        popWin.style.display = 'flex'
+        lost.style.display = 'flex'
+    }
+}
 
 const popWin = document.querySelector('.pop-win')
 const won = document.getElementById('won')
@@ -73,9 +106,9 @@ const messageWinner = (line,col) => {
     if(line===8&&col===21){
         popWin.style.display = 'flex'
         won.style.display = 'flex'
+        clearInterval(timer)
     }
 }
-
 
 const keyMove = event => {
     const keyName = event.key;
