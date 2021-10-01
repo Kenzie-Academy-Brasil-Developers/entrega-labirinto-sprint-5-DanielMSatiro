@@ -16,6 +16,12 @@ const map = [
     "WWWWWWWWWWWWWWWWWWWWW",
 ];
 
+let line = 9
+let col = -1
+let sizeCelula = 20
+let boxTop = line*sizeCelula
+let boxLeft = (col+1)*sizeCelula
+
 const titulo = document.createElement('span')
 titulo.classList = 'titulo'
 titulo.innerText = 'Lost in the Supermarket'
@@ -52,13 +58,16 @@ map.forEach((linha,i) => {
     })
 })
 
-let line = 9
-let col = -1
-const sizeCelula = 15
-let boxTop = line*sizeCelula
-let boxLeft = (col+1)*sizeCelula
 
-document.addEventListener('keydown', (event) => {
+const start = document.getElementById('start')
+start.addEventListener('click', () => {
+    document.addEventListener('keydown',(event)=>keyMove(event))
+})
+
+
+
+
+const keyMove = event => {
     const keyName = event.key;
     if(keyName==='ArrowDown'){
         if(positionCaminho.find(item=>item[0]===line+1&&item[1]===col)){
@@ -88,15 +97,11 @@ document.addEventListener('keydown', (event) => {
             jogador.style.left = `${boxLeft}px`
         }
     }    
-  });
+};
 
-  //ADAPTAR LABIRINTO PARA TELAS MAIORES
-  window.addEventListener('resize',() => sizeWindow())
 
-  const sizeWindow = () => {
-      const windowWidth = window.innerWidth
-      if(windowWidth>500){
-          sizeCelula = 20
-      }
-  }
+
+
+
+
 
